@@ -35,28 +35,28 @@ shinyServer(function(input, output) {
     })
     observeEvent(input$selected_good, {
         df <- if (vals$plot_style == 1) {
-                  data.frame(x=vals$ctd[["SA"]], y=vals$ctd[["CT"]])
-              } else if (vals$plot_style == 2) {
-                  data.frame(x=vals$ctd[["scan"]], y=vals$ctd[["pressure"]])
-              } else {
-                  stop("unknown plot_style=", vals$plot_style)
-              }
+            data.frame(x=vals$ctd[["SA"]], y=vals$ctd[["CT"]])
+        } else if (vals$plot_style == 2) {
+            data.frame(x=vals$ctd[["scan"]], y=vals$ctd[["pressure"]])
+        } else {
+            stop("unknown plot_style=", vals$plot_style)
+        }
         res <- brushedPoints(df, input$plot_brush, "x", "y", allRows=TRUE)
         vals$keep[res$selected_] <- TRUE
     })
     observeEvent(input$selected_bad, {
         df <- if (vals$plot_style == 1) {
-                  data.frame(x=vals$ctd[["SA"]], y=vals$ctd[["CT"]])
-              } else if (vals$plot_style == 2) {
-                  data.frame(x=vals$ctd[["scan"]], y=vals$ctd[["pressure"]])
-              } else {
-                  stop("unknown plot_style=", vals$plot_style)
-              }
+            data.frame(x=vals$ctd[["SA"]], y=vals$ctd[["CT"]])
+        } else if (vals$plot_style == 2) {
+            data.frame(x=vals$ctd[["scan"]], y=vals$ctd[["pressure"]])
+        } else {
+            stop("unknown plot_style=", vals$plot_style)
+        }
         res <- brushedPoints(df, input$plot_brush, "x", "y", allRows=TRUE)
         vals$keep[res$selected_] <- FALSE
     })
-
-
+    
+    
     ##> observeEvent(input$exclude_reset, {
     ##>              vals$keep <- TRUE | vals$keep
     ##> })
